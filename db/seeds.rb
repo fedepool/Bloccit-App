@@ -2,7 +2,7 @@ require 'faker'
 
 # Create 15 topics
 topics = []
-15.times do
+30.times do
   topics << Topic.create(
     name: Faker::Lorem.words(rand(1..10)).join(" "), 
     description: Faker::Lorem.paragraph(rand(1..4))
@@ -24,7 +24,7 @@ rand(4..10).times do
   # The `skip_confirmation!` method sets the confirmation date
   # to avoid sending an email. The `save` method updates the database.
 
-  rand(5..12).times do
+  rand(10..24).times do
     topic = topics.first # getting the first topic here
     p = u.posts.create(
       topic: topic,
@@ -42,31 +42,31 @@ rand(4..10).times do
   end
 end
 
-u = User.new(
-  name: 'Admin User',
-  email: 'admin@example.com', 
-  password: 'helloworld', 
-  password_confirmation: 'helloworld')
-u.skip_confirmation!
-u.save
-u.update_attribute(:role, 'admin')
+#u = User.new(
+# name: 'Admin User',
+# email: 'admin@example.com', 
+#password: 'helloworld', 
+#password_confirmation: 'helloworld')
+#u.skip_confirmation!
+#u.save
+#u.update_attribute(:role, 'admin')
 
-u = User.new(
-  name: 'Moderator User',
-  email: 'moderator@example.com', 
-  password: 'helloworld', 
-  password_confirmation: 'helloworld')
-u.skip_confirmation!
-u.save
-u.update_attribute(:role, 'moderator')
+#u = User.new(
+# name: 'Moderator User',
+# email: 'moderator@example.com', 
+ # password: 'helloworld', 
+  #password_confirmation: 'helloworld')
+#u.skip_confirmation!
+#u.save
+#u.update_attribute(:role, 'moderator')
 
-u = User.new(
-  name: 'Member User',
-  email: 'member@example.com', 
-  password: 'helloworld', 
-  password_confirmation: 'helloworld')
-u.skip_confirmation!
-u.save
+#u = User.new(
+#  name: 'Member User',
+ # email: 'member@example.com', 
+  #password: 'helloworld', 
+  #password_confirmation: 'helloworld')
+#u.skip_confirmation!
+#u.save
 
 puts "Seed finished"
 puts "#{User.count} users created"
