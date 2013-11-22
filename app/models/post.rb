@@ -6,6 +6,7 @@ class Post < ActiveRecord::Base
   attr_accessible :body, :title, :topic, :image
 
   default_scope order('created_at DESC')
+  scope :visible_to, lambda { |user| user ? scoped : joins(:topic).where('topics.public' => true) }
 
   mount_uploader :image, ImageUploader
 
